@@ -3,6 +3,18 @@
   "type": "object",
   "schemaVersion": 1,
   "properties": {
+    "statsMode": {
+      "title": "相場統計モード",
+      "type": "boolean",
+      "description": "有効にすると通常の商品プッシュではなく相場統計を1件出力します",
+      "default": false
+    },
+    "statsKeyword": {
+      "title": "相場統計フィルタキーワード",
+      "type": "string",
+      "description": "タイトル部分一致で絞り込み（省略可）",
+      "editor": "textfield"
+    },
     "searchKeyword": {
       "title": "Search Keyword",
       "type": "string",

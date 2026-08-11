@@ -2,7 +2,7 @@ import asyncio
 import random
 import re
 from datetime import datetime, timezone
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin
 
 import httpx
 
@@ -139,7 +139,10 @@ async def fetch_komehyo_categories(client, headers, keyword="", max_pages=2, max
             break
         page = 1
         while page <= max_pages and len(results) < max_items:
-            url = f"{BASE_URL.rstrip('/')}{path}?q=&page={page}"
+            if keyword:
+                url = f"{BASE_URL.rstrip('/')}{path}?q={quote(keyword)}&page={page}"
+            else:
+                url = f"{BASE_URL.rstrip('/')}{path}?q=&page={page}"
             html = await fetch_page(client, url, headers)
             if not html:
                 break
